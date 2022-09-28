@@ -1,0 +1,9 @@
+# Maven
+target/
+build/
+
+# Intellij
+.idea
+
+# VSCode
+.vscode
