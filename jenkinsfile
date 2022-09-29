@@ -9,20 +9,6 @@ properties([
         ])
 ])
 
-def makeAllureReports() {
-        script {
-            sh script: "chmod -R 777 $WORKSPACE/target/allure-results", label: 'fixing permissions for allure'
-        allure ([
-            includeProperties: false,
-            jdk: '',
-            properties: [],
-            reportBuildPolicy: 'ALWAYS',
-            results: [[path: 'target/allure-results']]
-        ])
-        }
-}
-
-
 pipeline {
     agent any
     tools {
@@ -38,12 +24,17 @@ pipeline {
             }
         }
         stage('Build') {
-//           when {
-//                 anyOf {
-//                 changeRequest()
-//                 triggeredBy cause: 'UserIdCause'
-//                     }
-//                 }
+            when {
+                allOf {
+                    anyOf {
+                        changeRequest()
+                        expression { env.BRANCH_NAME == 'master' }
+                    }
+                    not {
+                        triggeredBy cause: 'UserIdCause'
+                    }
+                }
+            }
             steps {
                 bat 'mvn clean test'
             }
@@ -52,16 +43,15 @@ pipeline {
      }
       post {
           always {
-          makeAllureReports()
-//             script {
-//               allure([
-//                 includeProperties: false,
-//                 jdk: '',
-//                 properties: [],
-//                 reportBuildPolicy: 'ALWAYS',
-//                 results: [[path: 'target/allure-results']]
-//               ])
-//             }
+            script {
+              allure([
+                includeProperties: false,
+                jdk: '',
+                properties: [],
+                reportBuildPolicy: 'ALWAYS',
+                results: [[path: 'target/allure-results']]
+              ])
+            }
           }
         }
 }
