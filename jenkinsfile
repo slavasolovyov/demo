@@ -31,7 +31,7 @@ pipeline {
                   }
             }
             steps {
-                bat echo "Test on QA"
+                echo "Test on QA"
                 bat 'mvn test'
 //                 sh 'mvn test'
             }
@@ -43,7 +43,7 @@ pipeline {
                           }
                     }
                     steps {
-                        bat echo "Test on DEV"
+                        echo "Test on DEV"
                         bat 'mvn test'
         //                 sh 'mvn test'
                     }
