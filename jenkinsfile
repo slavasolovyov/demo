@@ -12,7 +12,6 @@ properties([
 def makeAllureReports() {
         script {
             sh script: "chmod -R 777 $WORKSPACE/target/allure-results", label: 'fixing permissions for allure'
-            }
         allure ([
             includeProperties: false,
             jdk: '',
@@ -20,6 +19,7 @@ def makeAllureReports() {
             reportBuildPolicy: 'ALWAYS',
             results: [[path: 'target/allure-results']]
         ])
+        }
 }
 
 
