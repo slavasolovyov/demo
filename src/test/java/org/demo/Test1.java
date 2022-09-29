@@ -30,10 +30,8 @@ public class Test1 extends BaseTest{
     @Issue("JIRA-001")
     @TmsLink("TMS-001")
     void test(){
-
-        System.out.println("++++++++++++++ " + SELENOID_URL + " +++++++++++++++++");
         List<String> leftMenuItems = openPage(DOCUMENTATION).getLeftMenuItems();
         assertThat(leftMenuItems.size()).isGreaterThan(0);
-        Selenide.sleep(20000);
+        assertThat(leftMenuItems.contains("123")).isTrue();
     }
 }

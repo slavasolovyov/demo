@@ -4,11 +4,13 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.FileDownloadMode;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
+import org.demo.config.BaseLogger;
 import org.demo.config.TestConfiguration;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import static org.assertj.core.api.Assertions.assertThat;
-
+@ExtendWith({BaseLogger.class})
 public class BaseTest {
 
     static {
