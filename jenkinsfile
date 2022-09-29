@@ -51,9 +51,9 @@ pipeline {
             }
         }
      }
-//     post {
-//        always {
-//          makeAllureReports()
-//       }
-//    }
+    post {
+       always {
+         makeAllureReports()
+      }
+   }
 }
