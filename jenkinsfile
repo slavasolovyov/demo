@@ -24,17 +24,17 @@ pipeline {
             }
         }
         stage('Build') {
-            when {
-                allOf {
-                    anyOf {
-                        changeRequest()
-                        expression { env.BRANCH_NAME == 'master' }
-                    }
-                    not {
-                        triggeredBy cause: 'UserIdCause'
-                    }
-                }
-            }
+//             when {
+//                 allOf {
+//                     anyOf {
+//                         changeRequest()
+//                         expression { env.BRANCH_NAME == 'master' }
+//                     }
+//                     not {
+//                         triggeredBy cause: 'UserIdCause'
+//                     }
+//                 }
+//             }
             steps {
                 bat 'mvn clean test'
             }
