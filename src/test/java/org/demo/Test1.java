@@ -34,6 +34,6 @@ public class Test1 extends BaseTest{
         System.out.println("++++++++++++++ " + SELENOID_URL + " +++++++++++++++++");
         List<String> leftMenuItems = openPage(DOCUMENTATION).getLeftMenuItems();
         assertThat(leftMenuItems.size()).isGreaterThan(0);
-        Selenide.sleep(10000);
+        Selenide.sleep(20000);
     }
 }
