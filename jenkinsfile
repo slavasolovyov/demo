@@ -12,19 +12,20 @@ pipeline {
             }
         }
 
-		stage('Checkout') {
-		  steps {
-			script {
-				checkout([$class: 'GitSCM', branches: [[name: '*/master']], userRemoteConfigs: [[url: 'https://github.com/slavasolovyov/demo.git']]])
-			}
-		  }
-		}
+// 		stage('Checkout') {
+// 		  steps {
+// 			script {
+// 				checkout([$class: 'GitSCM', branches: [[name: '*/master']], userRemoteConfigs: [[url: 'https://github.com/slavasolovyov/demo.git']]])
+// 			}
+// 		  }
+// 		}
         stage('Build') {
             steps {
-                 dir("/var/jenkins_home/workspace/testPipe/test") {
-                 sh 'mvn clean test'
+                sh 'mvn clean test'
+//                  dir("/var/jenkins_home/workspace/testPipe/test") {
+//                  sh 'mvn clean test'
                 // sh 'mvn -B -DskipTests clean package'
-                }
+//                 }
             }
         }
      }
