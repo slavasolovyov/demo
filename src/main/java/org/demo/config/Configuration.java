@@ -11,7 +11,7 @@ public class Configuration {
     public static Dotenv environmentVariables = Dotenv.configure().systemProperties().load();
 
     static {
-        var environment = environmentVariables.get("env");
+        String environment = environmentVariables.get("env");
 
         if(environment.equalsIgnoreCase("dev")) {
             System.out.println("environment dev");
