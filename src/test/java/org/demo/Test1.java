@@ -33,5 +33,6 @@ public class Test1 extends BaseTest{
         List<String> leftMenuItems = openPage(DOCUMENTATION).getLeftMenuItems();
         assertThat(leftMenuItems.size()).isGreaterThan(0);
         assertThat(leftMenuItems.contains("123")).isTrue();
+
     }
 }
