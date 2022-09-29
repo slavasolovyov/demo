@@ -21,10 +21,10 @@ pipeline {
 		}
         stage('Build') {
             steps {
-                sh 'mvn clean test'
-                // dir("/var/lib/jenkins/workspace/demopipelinetask/my-app") {
+                 dir("/var/jenkins_home/workspace/testPipe/test") {
+                 sh 'mvn clean test'
                 // sh 'mvn -B -DskipTests clean package'
-                // }
+                }
             }
         }
      }
