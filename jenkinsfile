@@ -1,6 +1,6 @@
 properties([
         parameters([
-                choice(choices: ['qa', 'dev'], name: 'env', description: 'On which environment should I run checks?'),
+                choice(choices: ['qa', 'dev'], name: 'ENV', description: 'On which environment should I run checks?'),
                 string(defaultValue: 'https://selenide.org', name: 'BASE_URL', description: 'Specify BASE_URL By default "https://selenide.org"')
         ])
 ])
@@ -15,8 +15,10 @@ pipeline {
     stages {
         stage('Initialize'){
             steps{
-                echo "PATH = ${M2_HOME}/bin:${PATH}"
-                echo "M2_HOME = /opt/maven"
+//                 echo "PATH = ${M2_HOME}/bin:${PATH}",
+//                 echo "M2_HOME = /opt/maven",
+                echo "BASE_URL = " + BASE_URL,
+                echo "ENV = " + ENV
             }
         }
         stage('Build') {
@@ -28,7 +30,7 @@ pipeline {
         stage('Test on QA') {
              when {
                   expression {
-                  return params.env == 'qa'
+                  return params.ENV == 'qa'
                   }
             }
             steps {
@@ -40,7 +42,7 @@ pipeline {
           stage('Test on DEV') {
                      when {
                           expression {
-                          return params.env == 'dev'
+                          return params.ENV == 'dev'
                           }
                     }
                     steps {
