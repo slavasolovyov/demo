@@ -29,10 +29,19 @@ public class Test1 extends BaseTest{
     @Owner("vsoloviov@gmail.com")
     @Issue("JIRA-001")
     @TmsLink("TMS-001")
-    void test(){
+    void testNegative(){
         List<String> leftMenuItems = openPage(DOCUMENTATION).getLeftMenuItems();
         assertThat(leftMenuItems.size()).isGreaterThan(0);
         assertThat(leftMenuItems.contains("123")).isTrue();
 
+    }
+    @Test
+    @Description("some desc")
+    @Owner("vsoloviov@gmail.com")
+    @Issue("JIRA-001")
+    @TmsLink("TMS-001")
+    void testPosetive(){
+        List<String> leftMenuItems = openPage(DOCUMENTATION).getLeftMenuItems();
+        assertThat(leftMenuItems.size()).isGreaterThan(0);
     }
 }
