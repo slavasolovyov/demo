@@ -1,6 +1,7 @@
 properties([
         parameters([
                 choice(choices: ['qa', 'dev'], name: 'env', description: 'On which environment should I run checks?'),
+                string(defaultValue: 'https://selenide.org', name: 'BASE_URL', description: 'Specify BASE_URL By default "https://selenide.org"')
         ])
 ])
 
