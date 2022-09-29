@@ -26,29 +26,30 @@ pipeline {
                     }
                 }
         stage('Test on QA') {
-             when {
-                  expression {
-                  return params.ENV == 'qa'
-                  }
-            }
             steps {
-                echo "Test on QA"
-                bat 'mvn test -DBASE_URL=' + params.BASE_URL
+            if (params.ENV == 'qa'){
+             echo "Test on QA"
+                 bat 'mvn test -DBASE_URL=' + params.BASE_URL
+            //                 sh 'mvn test'
+            }
+            if (params.ENV == 'dev')
+                echo "Test on DEV"
+                  bat 'mvn test'
 //                 sh 'mvn test'
             }
         }
-          stage('Test on DEV') {
-                     when {
-                          expression {
-                          return params.ENV == 'dev'
-                          }
-                    }
-                    steps {
-                        echo "Test on DEV"
-                        bat 'mvn test'
-        //                 sh 'mvn test'
-                    }
-                }
+//           stage('Test on DEV') {
+//                      when {
+//                           expression {
+//                           return params.ENV == 'dev'
+//                           }
+//                     }
+//                     steps {
+//                         echo "Test on DEV"
+//                         bat 'mvn test'
+//         //                 sh 'mvn test'
+//                     }
+//                 }
 
      }
       post {
