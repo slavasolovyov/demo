@@ -1,11 +1,6 @@
 properties([
         parameters([
-//                 booleanParam(name: 'xray', defaultValue: false, description: 'Would you like to update results on XRAY?'),
-//                 string(defaultValue: 'HSA-2339', name: 'XRAY_EXECUTION_KEY', description: 'Specify XRAY_EXECUTION_KEY. By default "HSA-1552"'),
                 choice(choices: ['qa', 'dev'], name: 'env', description: 'On which environment should I run checks?'),
-//                 string(defaultValue: '', name: 'groups', description: 'Choose test groups to run from [admin, employee, retro]. Single group example: "group1". Multiple groups separated with comma: "group1,group2,...,groupN". By default all groups are selected.'),
-//                 string(defaultValue: 'retro,templates', name: 'excludeGroups', description: 'Choose test groups to exclude from run. Single group example: "group1". Multiple groups separated with comma: "group1,group2,...,groupN". By default all groups are selected.'),
-//                 string(defaultValue: '', name: 'branch', description: 'Choose repo branch to run tests from')
         ])
 ])
 
@@ -24,21 +19,35 @@ pipeline {
             }
         }
         stage('Build') {
-//             when {
-//                 allOf {
-//                     anyOf {
-//                         changeRequest()
-//                         expression { env.BRANCH_NAME == 'master' }
-//                     }
-//                     not {
-//                         triggeredBy cause: 'UserIdCause'
-//                     }
-//                 }
-//             }
+                    steps {
+                        bat 'mvn -B -DskipTests clean compile'
+//                         sh 'mvn -B -DskipTests clean compile'
+                    }
+                }
+        stage('Test on QA') {
+             when {
+                  expression {
+                  return params.env == 'qa'
+                  }
+            }
             steps {
-                bat 'mvn clean test'
+                bat echo "Test on QA"
+                bat 'mvn test'
+//                 sh 'mvn test'
             }
         }
+          stage('Test on DEV') {
+                     when {
+                          expression {
+                          return params.env == 'dev'
+                          }
+                    }
+                    steps {
+                        bat echo "Test on DEV"
+                        bat 'mvn test'
+        //                 sh 'mvn test'
+                    }
+                }
 
      }
       post {
