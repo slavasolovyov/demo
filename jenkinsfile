@@ -50,16 +50,19 @@ pipeline {
                 bat 'mvn clean test'
             }
         }
-        stage('Report') {
-            steps {
-                 publishHTML([reportName  : 'Allure Report', reportDir: 'target/site/allure-maven-plugin', reportFiles: 'index.html',
-                          reportTitles: '', allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false])
-                }
-             }
+
      }
-//     post {
-//        always {
-//          makeAllureReports()
-//       }
-//    }
+      post {
+          always {
+            script {
+              allure([
+                includeProperties: false,
+                jdk: '',
+                properties: [],
+                reportBuildPolicy: 'ALWAYS',
+                results: [[path: 'target/allure-results']]
+              ])
+            }
+          }
+        }
 }
