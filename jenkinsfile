@@ -27,15 +27,18 @@ pipeline {
                 }
         stage('Test on QA') {
             steps {
-            if (params.ENV == 'qa'){
-             echo "Test on QA"
-                 bat 'mvn test -DBASE_URL=' + params.BASE_URL
-            //                 sh 'mvn test'
-            }
-            if (params.ENV == 'dev')
-                echo "Test on DEV"
-                  bat 'mvn test'
-//                 sh 'mvn test'
+                script {
+                    if (params.ENV == 'qa'){
+                     echo "Test on QA"
+                           bat 'mvn test -DBASE_URL=' + params.BASE_URL
+        //                 sh 'mvn test'
+                    }
+                    if (params.ENV == 'dev'){
+                     echo "Test on DEV"
+                           bat 'mvn test'
+        //                 sh 'mvn test'
+                    }
+               }
             }
         }
 //           stage('Test on DEV') {
