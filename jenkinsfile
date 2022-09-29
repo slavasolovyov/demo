@@ -33,7 +33,7 @@ pipeline {
             }
             steps {
                 echo "Test on QA"
-                bat 'mvn test'
+                bat 'mvn test -DBASE_URL=' + params.BASE_URL
 //                 sh 'mvn test'
             }
         }
