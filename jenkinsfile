@@ -1,3 +1,30 @@
+properties([
+        parameters([
+//                 booleanParam(name: 'xray', defaultValue: false, description: 'Would you like to update results on XRAY?'),
+//                 string(defaultValue: 'HSA-2339', name: 'XRAY_EXECUTION_KEY', description: 'Specify XRAY_EXECUTION_KEY. By default "HSA-1552"'),
+                choice(choices: ['qa', 'dev'], name: 'env', description: 'On which environment should I run checks?'),
+//                 string(defaultValue: '', name: 'groups', description: 'Choose test groups to run from [admin, employee, retro]. Single group example: "group1". Multiple groups separated with comma: "group1,group2,...,groupN". By default all groups are selected.'),
+//                 string(defaultValue: 'retro,templates', name: 'excludeGroups', description: 'Choose test groups to exclude from run. Single group example: "group1". Multiple groups separated with comma: "group1,group2,...,groupN". By default all groups are selected.'),
+//                 string(defaultValue: '', name: 'branch', description: 'Choose repo branch to run tests from')
+        ])
+])
+
+def makeAllureReports() {
+    container('maven') {
+        script {
+            sh script: "chmod -R 777 $WORKSPACE/target/allure-results", label: 'fixing permissions for allure'
+        }
+    }
+    allure ([
+        includeProperties: false,
+        jdk: '',
+        properties: [],
+        reportBuildPolicy: 'ALWAYS',
+        results: [[path: 'target/allure-results']]
+    ])
+}
+
+
 pipeline {
     agent any
     tools {
@@ -12,43 +39,21 @@ pipeline {
                 echo "M2_HOME = /opt/maven"
             }
         }
-
-// 		stage('Checkout') {
-// 		  steps {
-// 			script {
-// 				checkout([$class: 'GitSCM', branches: [[name: '*/master']], userRemoteConfigs: [[url: 'https://github.com/slavasolovyov/demo.git']]])
-// 			}
-// 		  }
-// 		}
         stage('Build') {
+//           when {
+//                 anyOf {
+//                 changeRequest()
+//                 triggeredBy cause: 'UserIdCause'
+//                     }
+//                 }
             steps {
                 sh 'mvn clean test'
-//                  dir("/var/jenkins_home/workspace/testPipe/test") {
-//                  sh 'mvn clean test'
-                // sh 'mvn -B -DskipTests clean package'
-//                 }
-            }
-        }
-        stage('reports') {
-            steps {
-            script {
-                    allure([
-                            includeProperties: false,
-                            jdk: '',
-                            properties: [],
-                            reportBuildPolicy: 'ALWAYS',
-                            results: [[path: 'target/allure-results']]
-                    ])
-            }
             }
         }
      }
     post {
        always {
-          junit(
-        allowEmptyResults: true,
-        testResults: '*/test-reports/.xml'
-      )
+         makeAllureReports()
       }
    }
 }
