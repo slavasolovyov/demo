@@ -24,6 +24,7 @@ pipeline {
             }
         }
         stage('Build') {
+        when { changeRequest target: 'master' }
 //             when {
 //                 allOf {
 //                     anyOf {
