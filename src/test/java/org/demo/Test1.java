@@ -3,6 +3,7 @@ package org.demo;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.demo.Pages.Pages.Entrypoint.DOCUMENTATION;
 import static org.demo.Pages.Pages.openPage;
+import static org.demo.config.TestConfiguration.SELENOID_URL;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Issue;
@@ -28,6 +29,8 @@ public class Test1 extends BaseTest{
     @Issue("JIRA-001")
     @TmsLink("TMS-001")
     void test(){
+
+        System.out.println("++++++++++++++ " + SELENOID_URL + " +++++++++++++++++");
         List<String> leftMenuItems = openPage(DOCUMENTATION).getLeftMenuItems();
         assertThat(leftMenuItems.size()).isGreaterThan(0);
     }
