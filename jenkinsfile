@@ -25,35 +25,22 @@ pipeline {
 //                         sh 'mvn -B -DskipTests clean compile'
                     }
                 }
-        stage('Test on QA') {
+        stage('Test') {
             steps {
                 script {
                     if (params.ENV == 'qa'){
                      echo "Test on QA"
                            bat 'mvn test -DBASE_URL=' + params.BASE_URL
-        //                 sh 'mvn test'
+        //                 sh 'mvn test -DBASE_URL=' + params.BASE_URL
                     }
                     if (params.ENV == 'dev'){
                      echo "Test on DEV"
-                           bat 'mvn test'
-        //                 sh 'mvn test'
+                          'mvn test -DBASE_URL=' + params.BASE_URL
+        //                 sh 'mvn test -DBASE_URL=' + params.BASE_URL
                     }
                }
             }
         }
-//           stage('Test on DEV') {
-//                      when {
-//                           expression {
-//                           return params.ENV == 'dev'
-//                           }
-//                     }
-//                     steps {
-//                         echo "Test on DEV"
-//                         bat 'mvn test'
-//         //                 sh 'mvn test'
-//                     }
-//                 }
-
      }
       post {
           always {
