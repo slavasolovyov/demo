@@ -1,4 +1,4 @@
 testDataConfig:
-  baseUrl: https://google.com/
+  baseUrl: https://selenide.org/
   login: admin
   pass: superpass

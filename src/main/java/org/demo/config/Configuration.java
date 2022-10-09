@@ -18,6 +18,7 @@ public class Configuration {
         } else if (environment.equalsIgnoreCase("qa")) {
             System.out.println("environment qa");
         }
+        TestConfiguration.USE_LOCAL_BROWSER = Boolean.parseBoolean(environmentVariables.get("USE_LOCAL_BROWSER"));
     }
 
     public static Config getConfig() {
@@ -30,6 +31,7 @@ public class Configuration {
 
     }
 
+    @Getter
     public static class TestDataConfig{
         private String baseUrl;
         private String login;

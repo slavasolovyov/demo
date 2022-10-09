@@ -30,7 +30,7 @@ public class Test1 extends BaseTest{
     void testNegative(){
         List<String> leftMenuItems = openPage(DOCUMENTATION).getLeftMenuItems();
         assertThat(leftMenuItems.size()).isGreaterThan(0);
-//        assertThat(leftMenuItems.contains("123")).isTrue();
+        assertThat(leftMenuItems.contains("123")).isTrue();
 
     }
     @Test
