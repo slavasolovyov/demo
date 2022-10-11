@@ -61,16 +61,16 @@ public class BaseTest {
     @SneakyThrows
     public void login(){
         GoogleAuthPage authPage = openPage(AUTH_PAGE);
-        if (MOBILE){
-            RemoteWebDriver driver = (RemoteWebDriver) WebDriverRunner.getWebDriver();
-            String path = TestConfiguration.SELENOID_URL.replace("http", "ws").replace("/wd/hub", "");
-            ChromeDevToolsService chromeDevTools = ChromeDevToolsService.from(format(path + "/devtools/%s/page", driver.getSessionId()));
-            Emulation emulation = chromeDevTools.getEmulation();
-            emulation.setDeviceMetricsOverride(390,
-                    844,
-                    100d,
-                    true);
-        }
+//        if (MOBILE){
+//            RemoteWebDriver driver = (RemoteWebDriver) WebDriverRunner.getWebDriver();
+//            String path = TestConfiguration.SELENOID_URL.replace("http", "ws").replace("/wd/hub", "");
+//            ChromeDevToolsService chromeDevTools = ChromeDevToolsService.from(format(path + "/devtools/%s/page", driver.getSessionId()));
+//            Emulation emulation = chromeDevTools.getEmulation();
+//            emulation.setDeviceMetricsOverride(390,
+//                    844,
+//                    100d,
+//                    true);
+//        }
         authPage
                 .setLogin(testData.getLogin())
                 .clickOnNext()
