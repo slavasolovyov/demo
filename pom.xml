@@ -155,10 +155,10 @@
             <artifactId>jackson-dataformat-yaml</artifactId>
             <version>${jackson-dataformat-yaml}</version>
         </dependency>
-        <dependency>
-            <groupId>io.github.sskorol</groupId>
-            <artifactId>cdt-java-client</artifactId>
-            <version>${cdt-java-client}</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>io.github.sskorol</groupId>-->
+<!--            <artifactId>cdt-java-client</artifactId>-->
+<!--            <version>${cdt-java-client}</version>-->
+<!--        </dependency>-->
     </dependencies>
 </project>
