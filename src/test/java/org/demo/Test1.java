@@ -45,4 +45,24 @@ public class Test1 extends BaseTest{
         List<String> leftMenuItems = openPage(SPORTS_PREMATCH).getNavigationSliderItems();
         assertThat(leftMenuItems.size()).isGreaterThan(0);
     }
+
+    @Test
+    @Description("some desc")
+    @Owner("vsoloviov@gmail.com")
+    @Issue("JIRA-001")
+    @TmsLink("TMS-001")
+    void testPosetive2(){
+        List<String> leftMenuItems = openPage(SPORTS_PREMATCH).getNavigationSliderItems();
+        assertThat(leftMenuItems.size()).isGreaterThan(0);
+    }
+
+    @Test
+    @Description("some desc")
+    @Owner("vsoloviov@gmail.com")
+    @Issue("JIRA-001")
+    @TmsLink("TMS-001")
+    void testPosetive3(){
+        List<String> leftMenuItems = openPage(SPORTS_PREMATCH).getNavigationSliderItems();
+        assertThat(leftMenuItems.size()).isGreaterThan(0);
+    }
 }
