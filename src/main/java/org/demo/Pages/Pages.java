@@ -1,7 +1,7 @@
 package org.demo.Pages;
 
 import lombok.Getter;
-import org.demo.Pages.user.DocPage;
+import org.demo.Pages.user.PrematchPage;
 
 import static com.codeborne.selenide.Selenide.open;
 
@@ -17,7 +17,8 @@ public class Pages {
         private final Class<T> clazz;
 
         // admin portal
-        public static Entrypoint<DocPage> DOCUMENTATION = new Entrypoint<>("/documentation", DocPage.class);
+        public static Entrypoint<PrematchPage> SPORTS_PREMATCH = new Entrypoint<>("/sports/prematch/popular", PrematchPage.class);
+        public static Entrypoint<GoogleAuthPage> AUTH_PAGE = new Entrypoint<>("", GoogleAuthPage.class);
 
         private Entrypoint(String path, Class<T> clazz) {
             this.path = path;

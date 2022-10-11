@@ -1,4 +1,4 @@
 testDataConfig:
-  baseUrl: https://selenide.org/
-  login: admin
-  pass: superpass
+  baseUrl: https://dev.allinncz.com
+  login: viacheslav.soloviov@softconstruct.com
+  pass: killV.11
