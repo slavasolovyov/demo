@@ -32,7 +32,6 @@ public class Test1 extends BaseTest{
     @BeforeAll
     @SneakyThrows
     void setUp(){
-
         login();
     }
 

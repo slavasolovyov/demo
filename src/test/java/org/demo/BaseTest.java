@@ -3,10 +3,7 @@ package org.demo;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.FileDownloadMode;
 import com.codeborne.selenide.WebDriverConditions;
-import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
-import io.github.sskorol.cdt.protocol.commands.Emulation;
-import io.github.sskorol.cdt.services.ChromeDevToolsService;
 import io.qameta.allure.selenide.AllureSelenide;
 import lombok.SneakyThrows;
 import org.demo.Pages.GoogleAuthPage;
@@ -14,15 +11,13 @@ import org.demo.config.BaseLogger;
 import org.demo.config.TestConfiguration;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.time.Duration;
 
 import static com.codeborne.selenide.Selenide.webdriver;
-import static java.lang.String.format;
+
 import static org.demo.Pages.Pages.Entrypoint.AUTH_PAGE;
 import static org.demo.Pages.Pages.openPage;
-import static org.demo.config.TestConfiguration.MOBILE;
 
 @ExtendWith({BaseLogger.class})
 public class BaseTest {
