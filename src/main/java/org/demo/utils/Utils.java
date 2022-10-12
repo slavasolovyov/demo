@@ -8,6 +8,6 @@ public class Utils {
     @SneakyThrows
     public static String getPathToResourcesByFileName(String filename) {
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-        return Objects.requireNonNull(classLoader.getResource(filename).toURI().getPath());
+        return Objects.requireNonNull(Objects.requireNonNull(classLoader.getResource(filename)).toURI().getPath());
     }
 }

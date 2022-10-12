@@ -4,12 +4,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.demo.Pages.Pages.Entrypoint.SPORTS_PREMATCH;
 import static org.demo.Pages.Pages.openPage;
 
-import io.qameta.allure.Description;
-import io.qameta.allure.Issue;
-import io.qameta.allure.Owner;
-import io.qameta.allure.TmsLink;
+import io.qameta.allure.*;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.parallel.Execution;
@@ -28,43 +26,23 @@ public class Test1 extends BaseTest{
         login();
     }
 
-    @Test
-    @Description("some desc")
+
+    @Description("Test description")
     @Owner("vsoloviov@gmail.com")
     @Issue("JIRA-001")
-    @TmsLink("TMS-001")
+    @Test
     void testNegative(){
         List<String> leftMenuItems = openPage(SPORTS_PREMATCH).getNavigationSliderItems();
         assertThat(leftMenuItems.size()).isGreaterThan(0);
         assertThat(leftMenuItems.contains("123")).isTrue();
 
     }
-    @Test
-    @Description("some desc")
+
+    @Description("Test description")
     @Owner("vsoloviov@gmail.com")
-    @Issue("JIRA-001")
-    @TmsLink("TMS-001")
+    @Story("JIRA-002")
+    @Test
     void testPosetive(){
-        List<String> leftMenuItems = openPage(SPORTS_PREMATCH).getNavigationSliderItems();
-        assertThat(leftMenuItems.size()).isGreaterThan(0);
-    }
-
-    @Test
-    @Description("some desc")
-    @Owner("vsoloviov@gmail.com")
-    @Issue("JIRA-001")
-    @TmsLink("TMS-001")
-    void testPosetive2(){
-        List<String> leftMenuItems = openPage(SPORTS_PREMATCH).getNavigationSliderItems();
-        assertThat(leftMenuItems.size()).isGreaterThan(0);
-    }
-
-    @Test
-    @Description("some desc")
-    @Owner("vsoloviov@gmail.com")
-    @Issue("JIRA-001")
-    @TmsLink("TMS-001")
-    void testPosetive3(){
         List<String> leftMenuItems = openPage(SPORTS_PREMATCH).getNavigationSliderItems();
         assertThat(leftMenuItems.size()).isGreaterThan(0);
     }

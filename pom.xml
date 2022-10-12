@@ -16,7 +16,7 @@
         <junit-jupiter-engine.version>5.8.2</junit-jupiter-engine.version>
         <aspectj.version>1.9.9.1</aspectj.version>
         <selenoid.version>2.2.3</selenoid.version>
-        <allure.version>2.17.3</allure.version>
+        <allure.version>2.19.0</allure.version>
         <selenide.version>6.9.0</selenide.version>
         <assertj.version>3.22.0</assertj.version>
         <dotenv.version>2.2.3</dotenv.version>
@@ -38,13 +38,13 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-plugin.version}</version>
                 <configuration>
-<!--                    <argLine>-->
-<!--                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"-->
-<!--                    </argLine>-->
+                    <argLine>
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                    </argLine>
 <!--                    <excludedGroups>retro, templates</excludedGroups>-->
-                    <parallel>classes</parallel>
-                    <threadCount>4</threadCount>
-                    <forkCount>4</forkCount>
+<!--                    <parallel>classes</parallel>-->
+<!--                    <threadCount>4</threadCount>-->
+<!--                    <forkCount>4</forkCount>-->
                 </configuration>
                 <dependencies>
                     <dependency>
@@ -155,10 +155,10 @@
             <artifactId>jackson-dataformat-yaml</artifactId>
             <version>${jackson-dataformat-yaml}</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>io.github.sskorol</groupId>-->
-<!--            <artifactId>cdt-java-client</artifactId>-->
-<!--            <version>${cdt-java-client}</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>io.github.sskorol</groupId>
+            <artifactId>cdt-java-client</artifactId>
+            <version>${cdt-java-client}</version>
+        </dependency>
     </dependencies>
 </project>
